@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  consumer:
+    image: kafka-consumer-image
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=<BROKER_URL>
+      - KAFKA_SASL_MECHANISMS=PLAIN
+      - KAFKA_SECURITY_PROTOCOL=SASL_SSL
+      - KAFKA_SASL_USERNAME=<API_KEY>
+      - KAFKA_SASL_PASSWORD=<API_SECRET>
+      - KAFKA_GROUP_ID=<CONSUMER_GROUP_ID>
+      - KAFKA_AUTO_OFFSET_RESET=earliest
+    command: ["python", "consumer.py"]
